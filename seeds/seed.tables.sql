@@ -23,7 +23,7 @@ INSERT INTO "word" ("id", "language_id", "original", "translation", "next")
 VALUES
   (1, 1, 'bonjour', 'hello', 2),
   (2, 1, 'au revoir', 'goodbye', 3),
-  (3, 1, 'Merci', 'thank you', 4),
+  (3, 1, 'merci', 'thank you', 4),
   (4, 1, 'bonsoir', 'good evening', 5),
   (5, 1, 'bonne nuit', 'good night', 6),
   (6, 1, 'excusez-moi', 'excuse me', 7),
