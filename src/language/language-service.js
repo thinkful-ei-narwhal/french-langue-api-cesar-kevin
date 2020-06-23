@@ -31,11 +31,11 @@ const LanguageService = {
   getHead(db, user_id) {
     return db
       .from('language')
-      .join('word as headWord', 'language.head','headWord.id')
+      .join('word', 'language.head','word.id')
       .select(
-        'headWord.original as nextWord',
-        'headWord.correct_count as wordCorrectCount',
-        'headWord.incorrect_count as wordIncorrectCount',
+        'word.original as nextWord',
+        'word.correct_count as wordCorrectCount',
+        'word.incorrect_count as wordIncorrectCount',
         'language.total_score as totalScore'
       )
       .where('language.user_id', user_id)
