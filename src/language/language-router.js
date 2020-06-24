@@ -66,7 +66,13 @@ languageRouter
     const current= link.head;
     if(req.body.guess== current.translation){
       //do something to link double "memory values"
+      current.value.memory_value *=2
+      current.value.correct_count+=1
+      link.total_score +=1
     }else{
+      //do something to reset to 1 "memory values"
+      current.value.memory_value=1
+      current.value.incorrect_count+=1
     }
     res.json('ok')
   })
