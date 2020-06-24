@@ -79,6 +79,7 @@ languageRouter
     }
     //move head accordingly on link list
     const NewLink = LanguageService.moveHead(current.value,link);
+    LanguageService.updateWordTable(req.app.get('db'), NewLink, req.language.id)
 
     res.json({
       nextWord: NewLink.head.value.original,

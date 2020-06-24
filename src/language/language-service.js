@@ -43,15 +43,21 @@ const LanguageService = {
       .where('language.user_id', user_id)
   },
 
-  updateWordTable(db, sll) {
+  updateWordTable(db, sll, language_id) {
     let currNode = sll.head;
+
+    this.updateTotalScore(db, currNode.value.id, language_id)
   
     if (!sll.head) {
       return console.log('Linked list is empty');
     }
     while (currNode !== null) {
-    let {/*things from node to update*//*id*/} = currNode
-      let updatedWord = {/*things from node to update*/}
+    let {id, memory_value, correct_count, incorrect_count} = currNode.value
+      let updatedWord = {
+        memory_value: memory_value,
+        correct_count: correct_count,
+        incorrect_count: incorrect_count
+      }
       this.updateWord(db, id, updatedWord)
       currNode = currNode.next;
     }
@@ -61,6 +67,14 @@ const LanguageService = {
    return db('word')
     .where({ id })
     .update(newWordFields)
+  },
+
+  updateTotalScore(db, id, head) {
+    return db('language')
+      .where({ id })
+      .update({
+        head:head
+      })
   },
 
   createList(language, words){
