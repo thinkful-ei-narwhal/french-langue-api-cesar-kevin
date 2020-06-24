@@ -40,14 +40,6 @@ const LanguageService = {
       )
       .where('language.user_id', user_id)
   },
-  // getWord(db, nextWord) {
-  //   return db
-  //     .from('word')
-  //     .select(
-  //       'original'
-  //     )
-  //     .where('id', nextWord)
-  // }
 
   updateWordTable(db, sll) {
     let currNode = sll.head;
@@ -68,6 +60,40 @@ const LanguageService = {
     .where({ id })
     .update(newWordFields)
   },
+
+  createList(language, words){
+    const link = new LinkList()
+    link.id=language.id;
+    link.name=language.name;
+    link.total_score=language.total_score;
+
+    let head = words.find(word => word.id === language.head)
+
+    link.insertFirst({
+      id: head.id,
+      original: head.original, 
+      translation: head.translation,
+      memory_value: head.memory_value,
+      correct_count: head.correct_count,
+      incorrect_count: head.incorrect_count,
+      language_id: head.language_id,
+      next: head.next,
+    })
+    while(word.next !==null){
+      let nextWord = words.find(word => word.id === language.head)
+      link.insertLast({
+        id: nextWord.id,
+        original: nextWord.original, 
+        translation: nextWord.translation,
+        memory_value: nextWord.memory_value,
+        correct_count: nextWord.correct_count,
+        incorrect_count: nextWord.incorrect_count,
+        language_id: nextWord.language_id,
+        next: nextWord.next,
+      })
+    }
+    return link;
+  }
 }
 
 module.exports = LanguageService
