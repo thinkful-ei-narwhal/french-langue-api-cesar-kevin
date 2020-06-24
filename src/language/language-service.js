@@ -56,7 +56,8 @@ const LanguageService = {
       let updatedWord = {
         memory_value: memory_value,
         correct_count: correct_count,
-        incorrect_count: incorrect_count
+        incorrect_count: incorrect_count,
+        next: currNode.next ? currNode.next.value.id : null 
       }
       this.updateWord(db, id, updatedWord)
       currNode = currNode.next;
@@ -67,14 +68,16 @@ const LanguageService = {
    return db('word')
     .where({ id })
     .update(newWordFields)
+    .catch(err => console.log(err))
   },
 
-  updateTotalScore(db, id, head) {
+  updateTotalScore(db, head, id) {
     return db('language')
       .where({ id })
       .update({
         head:head
       })
+      .catch(err => console.log(err))
   },
 
   createList(language, words){
@@ -101,7 +104,6 @@ const LanguageService = {
   },
 
   moveHead(word, link){
-    console.log(word);
     link.remove(word)
     link.insertAt(word, word.memory_value+1)
     console.log(link)
