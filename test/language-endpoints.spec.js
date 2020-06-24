@@ -190,7 +190,7 @@ describe('Language Endpoints', function () {
           })
       })
 
-      it.skip(`moves the word 1 space and updates incorrect count`, async () => {
+      it(`moves the word 1 space and updates incorrect count`, async () => {
         await supertest(app)
           .post(`/api/language/guess`)
           .set('Authorization', helpers.makeAuthHeader(testUser))

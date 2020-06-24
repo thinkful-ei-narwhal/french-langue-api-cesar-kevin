@@ -2,6 +2,7 @@ const express = require('express')
 const LanguageService = require('./language-service')
 const { requireAuth } = require('../middleware/jwt-auth')
 const LinkedList = require('../LinkedList/LinkedList')
+const { contentSecurityPolicy } = require('helmet')
 
 const languageRouter = express.Router()
 
@@ -64,6 +65,7 @@ languageRouter
     const words = await LanguageService.getLanguageWords(req.app.get('db'),req.language.id,);
     const link = LanguageService.createList(req.language,words);
     const current= link.head;
+    let isCorrect = '';
     if(req.body.guess== current.translation){
       //do something to link double "memory values"
       current.value.memory_value *=2
@@ -73,11 +75,19 @@ languageRouter
       //do something to reset to 1 "memory values"
       current.value.memory_value=1
       current.value.incorrect_count+=1
+      isCorrect = false
     }
     //move head accordingly on link list
     const NewLink = LanguageService.moveHead(current.value,link);
 
-    res.json('ok')
+    res.json({
+      nextWord: NewLink.head.value.original,
+      totalScore: NewLink.total_score,
+      wordCorrectCount: NewLink.head.value.correct_count,
+      wordIncorrectCount: NewLink.head.value.incorrect_count,
+      answer: current.value.translation,
+      isCorrect: isCorrect
+    })
   })
 
 module.exports = languageRouter
