@@ -66,11 +66,13 @@ languageRouter
     const link = LanguageService.createList(req.language,words);
     const current= link.head;
     let isCorrect = '';
-    if(req.body.guess== current.translation){
+    console.log(link.total_score);
+    if(req.body.guess== current.value.translation){
       //do something to link double "memory values"
       current.value.memory_value *=2
       current.value.correct_count+=1
       link.total_score +=1
+      isCorrect = true
     }else{
       //do something to reset to 1 "memory values"
       current.value.memory_value=1

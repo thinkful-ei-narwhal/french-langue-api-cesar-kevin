@@ -106,7 +106,6 @@ const LanguageService = {
   moveHead(word, link){
     link.remove(word)
     link.insertAt(word, word.memory_value+1)
-    console.log(link)
     return link;
   }
 }
