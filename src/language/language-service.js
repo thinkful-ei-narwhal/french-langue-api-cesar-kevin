@@ -72,16 +72,7 @@ const LanguageService = {
     
     let current = words.find(word => word.id === language.head)
 
-    link.insertFirst({
-      id: current.id,
-      original: current.original, 
-      translation: current.translation,
-      memory_value: current.memory_value,
-      correct_count: current.correct_count,
-      incorrect_count: current.incorrect_count,
-    })
     while(current.next){
-      current = words.find(word => word.id === current.next)
       link.insertLast({
         id: current.id,
         original: current.original, 
@@ -90,6 +81,7 @@ const LanguageService = {
         correct_count: current.correct_count,
         incorrect_count: current.incorrect_count,
       })
+      current = words.find(word => word.id === current.next)
     }
     console.log(link);
     return link;
