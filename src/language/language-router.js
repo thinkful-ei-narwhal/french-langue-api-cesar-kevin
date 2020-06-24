@@ -62,15 +62,19 @@ languageRouter
       })
     }
     const words = await LanguageService.getLanguageWords(req.app.get('db'),req.language.id,);
-    console.log(words);
     const link = LanguageService.createList(req.language,words);
     console.log(link);
     const current= link.head;
     console.log(req.body.guess);
     if(req.body.guess== current.translation){
       //do something to link double "memory values"
+      current.value.memory_value *=2
+      current.value.correct_count+=1
+      link.total_score +=1
     }else{
-      console.log('ran');
+      //do something to reset to 1 "memory values"
+      current.value.memory_value=1
+      current.value.incorrect_count+=1
     }
     res.json('ok')
   })
