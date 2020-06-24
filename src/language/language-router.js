@@ -56,12 +56,13 @@ languageRouter
 
 languageRouter
   .post('/guess', async (req, res, next) => {
+    console.log(req.body)
     if (!req.body.guess) {
-      res.status(400).json({
+      return res.status(400).json({
         error: `Missing 'guess' in request body`
       })
     }
-    res.status(200)
+    res.json('ok')
   })
 
 module.exports = languageRouter
