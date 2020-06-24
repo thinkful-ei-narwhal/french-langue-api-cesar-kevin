@@ -81,7 +81,7 @@ const LanguageService = {
       incorrect_count: head.incorrect_count,
       language_id: head.language_id,
     })
-    while(head.next !==null){
+    while(head.next){
       let nextWord = words.find(word => word.id === head.next)
       link.insertLast({
         id: nextWord.id,
@@ -95,7 +95,6 @@ const LanguageService = {
       })
       head=head.next;
     }
-    console.log('ran to end');
     return link;
   }
 }
