@@ -1,3 +1,5 @@
+const LinkedList = require('../LinkedList/LinkedList')
+
 const LanguageService = {
   getUsersLanguage(db, user_id) {
     return db
@@ -62,10 +64,11 @@ const LanguageService = {
   },
 
   createList(language, words){
-    const link = new LinkList()
+    const link = new LinkedList()
     link.id=language.id;
     link.name=language.name;
     link.total_score=language.total_score;
+
 
     let head = words.find(word => word.id === language.head)
 
@@ -79,7 +82,7 @@ const LanguageService = {
       language_id: head.language_id,
       next: head.next,
     })
-    while(word.next !==null){
+    while(head.next !== null){
       let nextWord = words.find(word => word.id === language.head)
       link.insertLast({
         id: nextWord.id,
