@@ -82,8 +82,7 @@ const LanguageService = {
       language_id: head.language_id,
     })
     while(head.next !==null){
-      console.log('ran');
-      let nextWord = words.find(word => word.id === word.next)
+      let nextWord = words.find(word => word.id === head.next)
       link.insertLast({
         id: nextWord.id,
         original: nextWord.original, 
@@ -94,6 +93,7 @@ const LanguageService = {
         language_id: nextWord.language_id,
         next: nextWord.next,
       })
+      head=head.next;
     }
     console.log('ran to end');
     return link;
