@@ -75,7 +75,7 @@ languageRouter
       current.value.incorrect_count+=1
     }
     //move head accordingly on link list
-    const NewLink = LanguageService.moveHead(req.language,current.value,link);
+    const NewLink = LanguageService.moveHead(current.value,link);
 
     res.json('ok')
   })

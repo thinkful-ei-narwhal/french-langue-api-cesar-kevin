@@ -83,15 +83,14 @@ const LanguageService = {
       })
       current = words.find(word => word.id === current.next)
     }
-    console.log(link);
     return link;
   },
 
-  moveHead(language, word, link){
+  moveHead(word, link){
+    console.log(word);
     link.remove(word)
     link.insertAt(word, word.memory_value+1)
-    console.log(link);
-    console.log('ran');
+    return link;
   }
 }
 
