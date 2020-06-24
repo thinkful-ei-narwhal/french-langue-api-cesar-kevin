@@ -62,7 +62,7 @@ languageRouter
       })
     }
     const words = await LanguageService.getLanguageWords(req.app.get('db'),req.language.id,);
-    const link = LanguageService.createList(req.language, words);
+    const link = LanguageService.createList(req.language,words);
     const current= link.head;
     if(req.body.guess== current.translation){
       //do something to link double "memory values"

@@ -69,7 +69,7 @@ const LanguageService = {
     link.name=language.name;
     link.total_score=language.total_score;
 
-
+    
     let head = words.find(word => word.id === language.head)
 
     link.insertFirst({
@@ -80,10 +80,10 @@ const LanguageService = {
       correct_count: head.correct_count,
       incorrect_count: head.incorrect_count,
       language_id: head.language_id,
-      next: head.next,
     })
-    while(head.next !== null){
-      let nextWord = words.find(word => word.id === language.head)
+    while(head.next !==null){
+      console.log(word.id);
+      // nextWord = words.find(word => word.id === word.next)
       link.insertLast({
         id: nextWord.id,
         original: nextWord.original, 
@@ -95,6 +95,7 @@ const LanguageService = {
         next: nextWord.next,
       })
     }
+    console.log('ran to end');
     return link;
   }
 }
