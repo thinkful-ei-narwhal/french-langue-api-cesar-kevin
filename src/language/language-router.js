@@ -66,7 +66,6 @@ languageRouter
     const link = LanguageService.createList(req.language,words);
     const current= link.head;
     let isCorrect = '';
-    console.log(link.total_score);
     if(req.body.guess== current.value.translation){
       //do something to link double "memory values"
       current.value.memory_value *=2
@@ -81,6 +80,7 @@ languageRouter
     }
     //move head accordingly on link list
     const NewLink = LanguageService.moveHead(current.value,link);
+    console.log(NewLink.total_score);
     LanguageService.updateWordTable(req.app.get('db'), NewLink, req.language.id)
 
     res.json({

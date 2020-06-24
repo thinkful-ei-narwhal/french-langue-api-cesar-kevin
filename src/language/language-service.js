@@ -45,8 +45,9 @@ const LanguageService = {
 
   updateWordTable(db, sll, language_id) {
     let currNode = sll.head;
+    let totalScore = sll.total_score;
 
-    this.updateTotalScore(db, currNode.value.id, language_id)
+    this.updateTotalScore(db, currNode.value.id, totalScore, language_id)
   
     if (!sll.head) {
       return console.log('Linked list is empty');
@@ -71,11 +72,12 @@ const LanguageService = {
     .catch(err => console.log(err))
   },
 
-  updateTotalScore(db, head, id) {
+  updateTotalScore(db, head, totalScore, id) {
     return db('language')
       .where({ id })
       .update({
-        head:head
+        head:head,
+        total_score: totalScore
       })
       .catch(err => console.log(err))
   },
@@ -89,7 +91,7 @@ const LanguageService = {
     
     let current = words.find(word => word.id === language.head)
 
-    while(current.next){
+    while(current){
       link.insertLast({
         id: current.id,
         original: current.original, 
