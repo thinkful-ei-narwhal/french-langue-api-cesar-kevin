@@ -61,6 +61,16 @@ languageRouter
         error: `Missing 'guess' in request body`
       })
     }
+    const words = LanguageService.getLanguageWords(req.app.get('db'),req.language.id,);
+    console.log(words);
+    const link = LanguageService.createList(req.language,words);
+    const current= link.head;
+    console.log(req.body.guess);
+    if(req.body.guess== current.translation){
+      //do something to link double "memory values"
+    }else{
+      console.log('ran');
+    }
     res.json('ok')
   })
 
