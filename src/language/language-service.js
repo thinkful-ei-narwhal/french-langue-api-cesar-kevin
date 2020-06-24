@@ -48,6 +48,26 @@ const LanguageService = {
   //     )
   //     .where('id', nextWord)
   // }
+
+  updateWordTable(db, sll) {
+    let currNode = sll.head;
+  
+    if (!sll.head) {
+      return console.log('Linked list is empty');
+    }
+    while (currNode !== null) {
+    let {/*things from node to update*/, /*id*/} = currNode
+      let updatedWord = {/*things from node to update*/}
+      this.updateWord(db, id, updatedWord)
+      currNode = currNode.next;
+    }
+  },
+
+  updateWord(db, id, newWordFields) {
+   return db('word')
+    .where({ id })
+    .update(newWordFields)
+  },
 }
 
 module.exports = LanguageService

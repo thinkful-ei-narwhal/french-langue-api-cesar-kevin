@@ -174,7 +174,7 @@ describe('Language Endpoints', function () {
         guess: 'incorrect',
       }
 
-      it.skip(`responds with incorrect and moves head`, () => {
+      it(`responds with incorrect and moves head`, () => {
         return supertest(app)
           .post(`/api/language/guess`)
           .set('Authorization', helpers.makeAuthHeader(testUser))
