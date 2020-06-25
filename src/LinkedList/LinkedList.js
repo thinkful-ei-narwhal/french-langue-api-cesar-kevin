@@ -45,8 +45,7 @@ class LinkedList {
       currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log('Item not found');
-      return;
+      return 'Item not found';
     }
     previousNode.next = currNode.next;
   }

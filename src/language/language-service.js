@@ -50,7 +50,7 @@ const LanguageService = {
     this.updateTotalScore(db, currNode.value.id, totalScore, language_id)
   
     if (!sll.head) {
-      return console.log('Linked list is empty');
+      return 'Linked list is empty';
     }
     while (currNode !== null) {
     let {id, memory_value, correct_count, incorrect_count} = currNode.value
