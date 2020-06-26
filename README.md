@@ -36,4 +36,4 @@ reinforcement.
   - Postgresql 
   - Mocha, Chai
   - Express
-  - Jest
+  - Cypress
